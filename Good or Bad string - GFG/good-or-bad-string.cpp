@@ -8,42 +8,61 @@ using namespace std;
 // User function template for C++
 
 class Solution {
-  public:
-  bool isvowel(char A){
-      if(A=='a' || A=='e' || A=='i'|| A=='o'|| A=='u'|| A=='?')
-      return 1;
-      return 0;
-  }
-  
-    int isGoodorBad(string S) {
+    public:
+    bool isvowel(char pr)
+            {
+                if(pr=='a' || pr=='e' ||  pr=='i' ||  pr=='o' ||  pr=='u')
+                return 1;
+                else
+                return 0;
+            }
+    
+    int isGoodorBad(string S) 
+    {
         // code here
-         int maxiv=0,maxic=0;
-          
-          
-        
-        for(int i=0;i<S.length();i++){
-           if(isvowel(S[i]))
-           {
-               maxiv+=1;
-           }else
-           {
-               maxiv=0;
-           }
-           if(maxiv>5) return 0;
-           if(!isvowel(S[i]) || S[i]=='?'){
-               maxic+=1;
-           }
-           else{
-               maxic=0;
-           }
-           if(maxic>3) return 0;
+        int n=S.size();
+        int vowelcount=0;
+        int consocount=0;
+        int max1=-1;
+        int max2=-1;
+        for(int i=0;i<n;i++)
+        {
+            if(isvowel(S[i]) || S[i]=='?')
+            {
+                vowelcount++;
+                if(vowelcount>max1)
+                max1=vowelcount;
+            }
+                else
+                vowelcount=0;
+                
+            
         }
-        
-        
-        
-      return 1;
-    }
+           for(int i=0;i<n;i++) 
+           {
+            if(!isvowel(S[i]) )
+            {
+                consocount++;
+                if(consocount>max2)
+                max2=consocount;
+            }
+                else
+                consocount=0;
+               
+            
+        }
+        if(max1>5 || max2>3)
+        return 0;
+        else
+        return 1;
+   }
 };
+
+
+
+
+
+
 
 //{ Driver Code Starts.
 int main() 
